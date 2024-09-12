@@ -73,4 +73,13 @@ class MoviesController < ApplicationController
     def movie_params
       params.require(:movie).permit(:title, :rating, :description, :release_date)
     end
+    private
+    def sort_arrow(column)
+      if @sort == column
+        @direction == 'asc' ? '▲' : '▼'
+      else
+        ''
+      end
+    end
+  helper_method :sort_arrow
 end

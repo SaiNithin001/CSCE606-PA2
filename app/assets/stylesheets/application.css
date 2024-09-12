@@ -129,3 +129,13 @@
     background-color: #0052a3;
     text-decoration: none;
   }
+
+  table#movies th.sorted-asc::after {
+    content: " ▲";
+    color: #0066cc;
+  }
+  
+  table#movies th.sorted-desc::after {
+    content: " ▼";
+    color: #0066cc;
+  }

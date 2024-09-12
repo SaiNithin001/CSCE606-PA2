@@ -6,9 +6,18 @@
 <table id="movies">
   <thead>
     <tr>
-      <th><%= link_to "Title", movies_path(sort: "title", direction: (@sort == "title" && @direction == "asc") ? "desc" : "asc") %></th>
-      <th><%= link_to "Rating", movies_path(sort: "rating", direction: (@sort == "rating" && @direction == "asc") ? "desc" : "asc") %></th>
-      <th><%= link_to "Release Date", movies_path(sort: "release_date", direction: (@sort == "release_date" && @direction == "asc") ? "desc" : "asc") %></th>
+      <th class="<%= 'sorted-' + @direction if @sort == 'title' %>">
+        <%= link_to "Title #{sort_arrow('title')}", movies_path(sort: "title", direction: (@sort == "title" && @direction == "asc") ? "desc" : "asc") %>
+      </th>
+      <th class="<%= 'sorted-' + @direction if @sort == 'rating' %>">
+        <%= link_to "Rating #{sort_arrow('rating')}", movies_path(sort: "rating", direction: (@sort == "rating" && @direction == "asc") ? "desc" : "asc") %>
+      </th>
+      <th class="<%= 'sorted-' + @direction if @sort == 'release_date' %>">
+        <%= link_to "Release Date #{sort_arrow('release_date')}", movies_path(sort: "release_date", direction: (@sort == "release_date" && @direction == "asc") ? "desc" : "asc") %>
+      </th>
+      <th class="<%= 'sorted-' + @direction if @sort == 'description' %>">
+        <%= link_to "Description #{sort_arrow('description')}", movies_path(sort: "description", direction: (@sort == "description" && @direction == "asc") ? "desc" : "asc") %>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +26,7 @@
         <td><%= link_to movie.title, movie_path(movie) %></td>
         <td><%= movie.rating %></td>
         <td><%= movie.release_date.strftime("%B %d, %Y") %></td>
+        <td><%= truncate(movie.description, length: 100) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -28,5 +28,8 @@ more_movies = [
 ]
 
 more_movies.each do |movie|
-  Movie.create!(movie)
+  existing_movie = Movie.find_by(title: movie[:title])
+  if !existing_movie
+    Movie.create!(movie)
+  end
 end
